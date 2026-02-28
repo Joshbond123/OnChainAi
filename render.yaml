@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: onchain-ai-web
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: ENABLE_INLINE_SCHEDULER
+        value: "false"
+      - key: DRY_RUN_AUTOMATION
+        value: "true"
+
+cronJobs:
+  - name: onchain-ai-scheduler
+    env: node
+    plan: free
+    schedule: "*/5 * * * *"
+    buildCommand: npm install
+    startCommand: npm run cron
