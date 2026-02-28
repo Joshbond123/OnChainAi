@@ -1,0 +1,19 @@
+{
+  "name": "onchain-ai-automation",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w backend\" \"npm run dev -w frontend\"",
+    "build": "npm run build -w frontend && node scripts/sync-frontend-to-backend.mjs",
+    "start": "npm run start -w backend",
+    "cron": "npm run cron -w backend",
+    "lint": "npm run lint -w frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  }
+}
